@@ -1,5 +1,5 @@
 import Input, { Gender } from '../components/Input'
-import style from './contact.module.css'
+// import style from './contact.module.css'
 import { FaPhoneVolume } from "react-icons/fa6";
 import { FaEnvelope } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
@@ -11,11 +11,11 @@ import { FaDiscord } from "react-icons/fa";
 
 const Contact = () => {
   return (
-    <div className={`${style.textF} flex flex-col md:flex-wrap w-[100%] bg-black h-[100vh] p-[20px] `}>
+    <div className={`${{/*style.textF*/}} flex flex-col md:flex-wrap w-[100%] bg-black h-[100vh] p-[20px] `}>
 
 
 
-        <div className={`text-white ${style.width} flex flex-col md: justify-around rounded-bl-[10px] rounded-tl-[10px] w-[30vw] h-full bg-gray-900 pl-[20px]`}>
+        <div className={`text-white ${{/*style.width*/}} flex flex-col md: justify-around rounded-bl-[10px] rounded-tl-[10px] w-[30vw] h-full bg-gray-900 pl-[20px]`}>
             <div>
                 <h1 className='text-[2vw]'>Contact Information</h1>
                 <p className='text-[1vw]'>Say something to start a live chat!</p>
