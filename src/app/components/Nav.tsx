@@ -4,13 +4,16 @@ import { FaYoutube } from "react-icons/fa6";
 import { FaPinterest } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import Link from "next/link";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-    Popover,
+// import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Popover, PopoverContent, PopoverTrigger } from "../../components/ui/popover";
+// import { Sheet } from "lucide-react";
+import {Sheet, SheetContent, SheetTrigger } from "../../components/ui/sheet";
+// import {
+//     Popover,
 
-    PopoverContent,
-    PopoverTrigger,
-  } from "@/components/ui/popover"
+//     PopoverContent,
+//     PopoverTrigger,
+//   } from "src/components/ui/popover"
   
 
 const Nav = () => {
