@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ES2020",               
-    "lib": ["dom", "es2020"],         
+    "target": "ES2020",  
+    "baseUrl": ".",             
+    "paths": {
+      "@/lib/utils": ["src/lib/utils"]
+    },   
     "strict": true,                   
     "moduleResolution": "node",       
     "esModuleInterop": true,          
