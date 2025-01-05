@@ -15,9 +15,9 @@ const About = () => {
         </div>
 
         <div className="w-[50%] z-10 mt-[80px]">
-            <h1 className={`${[/*style.textH1*/]} text-[8vw] `}>About Us</h1>
+            <h1 className={`${[/*style.textH1*/]} text-[8vw] text-white`}>About Us</h1>
 
-            <p className={`text-white ${{/*style.abtC*/}}`}>Welcome to Runo, your go-to source for everything sports! We are a team of passionate sports lovers dedicated to bringing you the latest news, expert analysis, and practical tips across a variety of sports. Whether you’re an athlete, a fan, or just staying active, we provide content that informs, inspires, and motivates. From training advice and gear reviews to breaking news and inspiring stories, we’ve got you covered. Join our community of sports enthusiasts and stay connected with the world of sports, right here at Runo.
+            <p className={`text-white ${{/*style.abtC*/}} w-[70%]`}>Welcome to Runo, your go-to source for everything sports! We are a team of passionate sports lovers dedicated to bringing you the latest news, expert analysis, and practical tips across a variety of sports. Whether you’re an athlete, a fan, or just staying active, we provide content that informs, inspires, and motivates. From training advice and gear reviews to breaking news and inspiring stories, we’ve got you covered. Join our community of sports enthusiasts and stay connected with the world of sports, right here at Runo.
 
 </p>
         </div>
