@@ -1,20 +1,39 @@
 {
   "compilerOptions": {
-    "target": "ES2020",  
-    "baseUrl": ".",             
+    "target": "ES2020",
+    "baseUrl": ".",
     "paths": {
-      "@/lib/utils": ["src/lib/utils"]
-    },   
-    "strict": true,                   
-    "moduleResolution": "node",       
-    "esModuleInterop": true,          
-    "skipLibCheck": true,             
+      "@/lib/utils": [
+        "src/lib/utils"
+      ]
+    },
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react-jsx"                // Enables the new JSX transform for React 17+
+    "jsx": "preserve" // Enables the new JSX transform for React 17+
+    ,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
-    "src/**/*.ts", 
-    "src/**/*.tsx"
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
