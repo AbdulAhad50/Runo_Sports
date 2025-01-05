@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Home from "./components/Hero";
 import CardSh from "./components/showCard";
 import HeroBar from "./components/HeroBar";

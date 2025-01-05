@@ -1,5 +1,6 @@
-// blog.js schema for Sanity CMS
-export default {
+import { Rule } from '@sanity/types';
+
+const blogSchema = {
   name: 'blog',
   title: 'Blog',
   type: 'document',
@@ -8,7 +9,7 @@ export default {
       name: 'title',
       title: 'Main Title',
       type: 'string',
-      validation: (Rule: { required: () => { (): any; new(): any; max: { (arg0: number): any; new(): any; }; }; }) => Rule.required().max(100),
+      validation: (Rule:Rule) => Rule.required().max(100),
     },
     {
       name: 'slug',
@@ -31,7 +32,7 @@ export default {
           { title: 'Football', value: 'football' },
         ],
       },
-      validation: (Rule: { required: () => any; }) => Rule.required(),
+      validation: (Rule:Rule) => Rule.required(),
     },
     {
       name: 'content',
@@ -78,3 +79,5 @@ export default {
     },
   },
 };
+
+export default blogSchema;
