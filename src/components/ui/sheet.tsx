@@ -8,20 +8,18 @@ import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const Sheet = SheetPrimitive.Root
-
 const SheetTrigger = SheetPrimitive.Trigger
-
 const SheetClose = SheetPrimitive.Close
-
 const SheetPortal = SheetPrimitive.Portal
 
+// Ensure correct typing for forwardRef
 const SheetOverlay = React.forwardRef<
-  React.ElementRef<typeof SheetPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
+  React.ElementRef<typeof SheetPrimitive.Overlay>, // Ref type
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay> // Props type
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
-      "fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className
     )}
     {...props}
@@ -30,6 +28,7 @@ const SheetOverlay = React.forwardRef<
 ))
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
 
+// Define the sheet variants using `cva`
 const sheetVariants = cva(
   "fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out",
   {
@@ -49,13 +48,14 @@ const sheetVariants = cva(
   }
 )
 
+// Correctly typing the props of SheetContent
 interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
     VariantProps<typeof sheetVariants> {}
 
 const SheetContent = React.forwardRef<
-  React.ElementRef<typeof SheetPrimitive.Content>,
-  SheetContentProps
+  React.ElementRef<typeof SheetPrimitive.Content>, // Ref type
+  SheetContentProps // Props type
 >(({ side = "right", className, children, ...props }, ref) => (
   <SheetPortal>
     <SheetOverlay />
@@ -74,6 +74,7 @@ const SheetContent = React.forwardRef<
 ))
 SheetContent.displayName = SheetPrimitive.Content.displayName
 
+// SheetHeader Component
 const SheetHeader = ({
   className,
   ...props
@@ -88,6 +89,7 @@ const SheetHeader = ({
 )
 SheetHeader.displayName = "SheetHeader"
 
+// SheetFooter Component
 const SheetFooter = ({
   className,
   ...props
@@ -102,9 +104,10 @@ const SheetFooter = ({
 )
 SheetFooter.displayName = "SheetFooter"
 
+// SheetTitle Component
 const SheetTitle = React.forwardRef<
-  React.ElementRef<typeof SheetPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
+  React.ElementRef<typeof SheetPrimitive.Title>, // Ref type
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title> // Props type
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Title
     ref={ref}
@@ -114,9 +117,10 @@ const SheetTitle = React.forwardRef<
 ))
 SheetTitle.displayName = SheetPrimitive.Title.displayName
 
+// SheetDescription Component
 const SheetDescription = React.forwardRef<
-  React.ElementRef<typeof SheetPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
+  React.ElementRef<typeof SheetPrimitive.Description>, // Ref type
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description> // Props type
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Description
     ref={ref}
