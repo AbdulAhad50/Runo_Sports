@@ -4,16 +4,9 @@ import { FaYoutube } from "react-icons/fa6";
 import { FaPinterest } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import Link from "next/link";
-// import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Popover, PopoverContent, PopoverTrigger } from "../../components/ui/popover";
-// import { Sheet } from "lucide-react";
 import {Sheet, SheetContent, SheetTrigger } from "../../components/ui/sheet";
-// import {
-//     Popover,
 
-//     PopoverContent,
-//     PopoverTrigger,
-//   } from "src/components/ui/popover"
   
 
 const Nav = () => {
@@ -25,9 +18,6 @@ const Nav = () => {
           <ul className="flex gap-[2vw] navB">
             <li>
               <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/about">About</Link>
             </li>
             <li>
                 
@@ -44,9 +34,6 @@ const Nav = () => {
                 </Popover>
 
                 
-            </li>
-            <li>
-              <Link href="/contact">Contact</Link>
             </li>
           </ul>
           <ul className="flex gap-[1.5vw] items-center navB">

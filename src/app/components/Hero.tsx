@@ -12,9 +12,9 @@ const Hero = () => {
       </div>
 
       {/* Hero image */}
-      <div className="absolute right-[10vw] sm:right-[20vw] top-[4vw] sm:top-[8vw]">
+      {/* <div className="absolute right-[10vw] sm:right-[20vw] top-[4vw] sm:top-[8vw]">
         <Image src={'/basket.svg'} alt="hero-image" width={650} height={300} layout="intrinsic" />
-      </div>
+      </div> */}
 
       {/* GIF (hidden on mobile screens) */}
       <div className="flex-col gap-[2vw] mt-20 sm:mt-20 hidden sm:flex">

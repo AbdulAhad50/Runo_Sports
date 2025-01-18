@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { CiClock2 } from "react-icons/ci";
 const CardSh = () => {
   return (
@@ -19,7 +20,7 @@ const CardSh = () => {
           ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus commodi a magni eum ratione aut.</p>
           <p className="flex text-gray-400 items-center gap-3"><CiClock2/> 12/22/2024</p>
           
-          <button className="bg-black text-teal-400 w-[200px] h-16 text-[1.2vw] rounded-[5px]"> Read More</button>
+          <Link href={`/${1}`}> <button className="bg-black text-teal-400 w-[200px] h-16 text-[1.2vw] rounded-[5px]">Read More</button></Link>
       </div>
     </div>
   );
