@@ -66,9 +66,7 @@ const Nav = () => {
               <li className="">
                 <Link href="/">Home</Link>
               </li>
-              <li className="">
-                <Link href="/about">About</Link>
-              </li>
+    
               <li className="">
               <Popover>
                     <PopoverTrigger>Sports</PopoverTrigger>
@@ -82,9 +80,7 @@ const Nav = () => {
                     </PopoverContent>
                 </Popover>
               </li>
-              <li className="">
-                <Link href="/contact">Contact</Link>
-              </li>
+      
             </ul>
             <ul className="flex mScreenB text-[3vw] w-[100%] flex-col gap-[2vw] pb-5">
               <li className="">

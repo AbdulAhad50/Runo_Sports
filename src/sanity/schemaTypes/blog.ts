@@ -66,6 +66,22 @@ const blogSchema = {
       ],
     },
     {
+      name: 'featuredImage',
+      title: 'Featured Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alternative Text',
+          type: 'string',
+          options: {
+            isHighlighted: true,
+          },
+        },
+      ],
+    },
+    {
       name: 'publishedAt',
       title: 'Published At',
       type: 'datetime',
@@ -75,7 +91,7 @@ const blogSchema = {
     select: {
       title: 'title',
       subtitle: 'category',
-      media: 'content[0]',
+      media: 'featuredImage', // Using the featured image for preview
     },
   },
 };

@@ -1,15 +1,95 @@
+"use client";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { client } from "src/sanity/lib/client"; // Sanity client import
+import { urlFor } from "src/sanity/lib/image"; // Image utility import
 
-const page = () => {
-  return (
-    <div className="w-[100%] h-auto">
-        <h1 className={`w-70% h-auto text-[50px] font-bold ml-6`}>Title</h1>
-
-        <h2 className="ml-8 text-[40px] font-bold">Data Data</h2>
-        <p className="w-[70%] h-auto ml-8 text-justify mt-2 mb-8">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur beatae placeat suscipit, autem, minima aliquam doloremque reiciendis soluta, dolorem quasi consequuntur dolores culpa magnam deleniti illo assumenda. Sequi minima officiis similique quia iusto eaque minus. Ea quo, cum ducimus, a quidem neque, consectetur dolores id placeat laborum reiciendis quaerat nulla? Non nihil qui quisquam maiores, aspernatur praesentium ut molestias mollitia quasi. Sapiente beatae neque obcaecati totam eligendi, cupiditate perferendis, nesciunt ipsum repellendus hic impedit pariatur magni, dolore saepe iusto fugiat. Voluptatem perferendis molestias sint suscipit mollitia quod quasi. Alias labore doloremque sequi ad, cupiditate exercitationem praesentium. Magnam ipsa repudiandae illo suscipit, eveniet sequi explicabo iste reiciendis. Quidem rerum hic accusamus blanditiis facilis voluptatem molestiae ipsa tempora, reprehenderit temporibus. Eius, libero cum nisi eaque minus iste officiis quasi optio facere labore vel praesentium laboriosam tenetur aspernatur ad eveniet atque perferendis laborum provident tempore ipsam. Atque nostrum voluptatem similique ab natus nam sit, deleniti quas, tempore, quam optio dolores sint quibusdam perferendis asperiores eaque recusandae consectetur voluptas adipisci aspernatur officiis corporis aperiam. Dignissimos distinctio impedit totam nobis veritatis? Quas eligendi aliquam at cumque corrupti, a, quo iure similique accusantium blanditiis ullam illum ea. Asperiores dolorem minus possimus modi nisi, omnis perferendis nobis?</p>
-        <h2 className="ml-8 text-[40px] font-bold">Data Data</h2>
-        <p className="w-[70%] h-auto ml-8 text-justify mt-2 mb-8">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur beatae placeat suscipit, autem, minima aliquam doloremque reiciendis soluta, dolorem quasi consequuntur dolores culpa magnam deleniti illo assumenda. Sequi minima officiis similique quia iusto eaque minus. Ea quo, cum ducimus, a quidem neque, consectetur dolores id placeat laborum reiciendis quaerat nulla? Non nihil qui quisquam maiores, aspernatur praesentium ut molestias mollitia quasi. Sapiente beatae neque obcaecati totam eligendi, cupiditate perferendis, nesciunt ipsum repellendus hic impedit pariatur magni, dolore saepe iusto fugiat. Voluptatem perferendis molestias sint suscipit mollitia quod quasi. Alias labore doloremque sequi ad, cupiditate exercitationem praesentium. Magnam ipsa repudiandae illo suscipit, eveniet sequi explicabo iste reiciendis. Quidem rerum hic accusamus blanditiis facilis voluptatem molestiae ipsa tempora, reprehenderit temporibus. Eius, libero cum nisi eaque minus iste officiis quasi optio facere labore vel praesentium laboriosam tenetur aspernatur ad eveniet atque perferendis laborum provident tempore ipsam. Atque nostrum voluptatem similique ab natus nam sit, deleniti quas, tempore, quam optio dolores sint quibusdam perferendis asperiores eaque recusandae consectetur voluptas adipisci aspernatur officiis corporis aperiam. Dignissimos distinctio impedit totam nobis veritatis? Quas eligendi aliquam at cumque corrupti, a, quo iure similique accusantium blanditiis ullam illum ea. Asperiores dolorem minus possimus modi nisi, omnis perferendis nobis?</p>
-    </div>
-  )
+interface T {
+  title: string;
+  content: [
+    {
+      children: [
+        {
+          text: string;
+        }
+      ];
+    }
+  ];
+  feturedImage: any; // Image field in Sanity
+  publishedAt: string;
+  _createdAt: string;
+  _id: string;
 }
 
-export default page
+const Page = ({ params }: { params: { blog: string } }) => {
+  const [blogData, setBlogData] = useState<T | null>(null); // Store fetched blog data
+  const [loading, setLoading] = useState<boolean>(true); // Loading state
+  const [isMounted, setIsMounted] = useState(false); // Client-side mounted flag
+
+  useEffect(() => {
+    // Mark component as mounted
+    setIsMounted(true);
+
+    async function fetchSingleData(id: string) {
+      try {
+        setLoading(true);
+        const data = await client.fetch(`*[_type == "blog"]`);
+        const find = data.find((elem: T) => elem._id === id); // Find blog by _id
+        setBlogData(find || null); // Set found blog data or null if not found
+      } catch (err) {
+        console.error("Error fetching blog data:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    if (params.blog) {
+      fetchSingleData(params.blog); // Fetch blog data when the params change
+    }
+  }, [params.blog]); // Dependency array ensures effect runs when `params.blog` changes
+
+  // Skip rendering until mounted to avoid SSR mismatch
+  if (!isMounted) {
+    return null; // Prevent mismatch during SSR
+  }
+
+  if (loading) {
+    return <div>Loading...</div>; // Show loading message while data is being fetched
+  }
+
+  if (!blogData) {
+    return <div>No blog found.</div>; // Show error message if no blog data is found
+  }
+
+  // Check if feturedImage exists and has a valid URL
+  const imageUrl = blogData.feturedImage ? urlFor(blogData.feturedImage)?.url() : null;
+
+  return (
+    <div className="w-[100%] h-auto">
+      <h1 className="w-70% h-auto text-[50px] font-bold ml-6">{blogData.title}</h1>
+
+      <h2 className="ml-8 text-[40px] font-bold">Published on: {blogData.publishedAt}</h2>
+
+      {/* Displaying featured image if it exists */}
+      {imageUrl ? (
+        <Image
+          src={imageUrl}
+          alt={blogData.title}
+          width={500} // Adjust the width as needed
+          height={300} // Adjust the height as needed
+        />
+      ) : (
+        <div>No image available</div> // Fallback if image URL is not valid
+      )}
+
+      {/* Displaying full content */}
+      <p className="w-[70%] h-auto ml-8 text-justify mt-2 mb-8">
+        {blogData.content?.map((block, index) => (
+          <span key={index}>{block.children[0].text}</span>
+        ))}
+      </p>
+    </div>
+  );
+};
+
+export default Page;
